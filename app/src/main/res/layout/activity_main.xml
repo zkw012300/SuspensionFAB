@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:a_zhon="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:clipChildren="false"
+    tools:context="com.azhon.fab.MainActivity">
+
+    <com.azhon.foldingfab.SuspensionFab
+        android:id="@+id/fab_bottom"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:layout_margin="10dp"
+        android:gravity="center"
+        a_zhon:fab_direction="bottom"
+        a_zhon:fab_spacing="10dp"
+        a_zhon:fab_state="true" />
+
+    <com.azhon.foldingfab.SuspensionFab
+        android:id="@+id/fab_right"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:layout_alignParentBottom="true"
+        android:layout_margin="10dp"
+        android:gravity="center"
+        a_zhon:fab_direction="right"
+        a_zhon:fab_spacing="10dp"
+        a_zhon:fab_state="false" />
+
+    <com.azhon.foldingfab.SuspensionFab
+        android:id="@+id/fab_top"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_margin="10dp"
+        android:gravity="center"
+        a_zhon:fab_direction="top"
+        a_zhon:fab_spacing="10dp"
+        a_zhon:fab_state="false" />
+
+    <com.azhon.foldingfab.SuspensionFab
+        android:id="@+id/fab_left"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:layout_alignParentRight="true"
+        android:layout_margin="10dp"
+        android:gravity="center"
+        a_zhon:fab_direction="left"
+        a_zhon:fab_spacing="10dp"
+        a_zhon:fab_state="false" />
+
+    <ImageView
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        android:layout_centerInParent="true"
+        android:src="@drawable/logo" />
+</RelativeLayout>

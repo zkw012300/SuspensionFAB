@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="a_zhon">
+        <!--两个按钮间的间距-->
+        <attr name="fab_spacing" format="dimension" />
+        <!--默认展开还是折叠-->
+        <attr name="fab_state" format="boolean" />
+        <!--展开的方向-->
+        <attr name="fab_direction" format="enum">
+            <enum name="top" value="1" />
+            <enum name="bottom" value="2" />
+            <enum name="left" value="3" />
+            <enum name="right" value="4" />
+        </attr>
+    </declare-styleable>
+</resources>
