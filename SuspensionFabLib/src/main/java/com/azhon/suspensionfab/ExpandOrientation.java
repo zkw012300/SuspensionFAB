@@ -1,4 +1,4 @@
-package com.azhon.foldingfab;
+package com.azhon.suspensionfab;
 
 /*
  * 项目名:    SuspensionFAB

@@ -2,7 +2,7 @@ package com.azhon.suspensionfab.manager;
 
 import android.support.design.widget.FloatingActionButton;
 
-import com.azhon.foldingfab.ExpandOrientation;
+import com.azhon.suspensionfab.ExpandOrientation;
 import com.azhon.suspensionfab.SuspensionFab;
 
 /*
