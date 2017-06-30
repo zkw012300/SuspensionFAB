@@ -362,6 +362,16 @@ public class SuspensionFab extends RelativeLayout implements View.OnClickListene
     }
 
     /**
+     * 设置展开的方向
+     *
+     * @param orientation 方向
+     * @see ExpandOrientation
+     */
+    public void setOrientation(ExpandOrientation orientation) {
+        this.orientation = orientation.getValue();
+    }
+
+    /**
      * 设置按钮的间距
      *
      * @param fabSpacing 大小
