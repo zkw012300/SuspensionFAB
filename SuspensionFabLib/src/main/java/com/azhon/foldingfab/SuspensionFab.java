@@ -162,6 +162,9 @@ public class SuspensionFab extends RelativeLayout implements View.OnClickListene
      */
     private void openAnimate() {
         currentState = true;
+        if (animationManager != null) {
+            animationManager.defaultFabAnimation(getFabFromTag(defaultTag), ExpandOrientation.getEnum(orientation), currentState);
+        }
         //按照添加的顺序一次展开按钮，去除默认的第一个按钮
         int j = 0;
         for (int i = getChildCount() - 1; i > 0; i--) {
@@ -206,6 +209,9 @@ public class SuspensionFab extends RelativeLayout implements View.OnClickListene
      */
     private void closeAnimate() {
         currentState = false;
+        if (animationManager != null) {
+            animationManager.defaultFabAnimation(getFabFromTag(defaultTag), ExpandOrientation.getEnum(orientation), currentState);
+        }
         //按照添加的顺序一次折叠按钮，去除默认的第一个按钮
         int j = getChildCount() - 1;
         for (int i = 0; i < getChildCount() - 1; i++) {

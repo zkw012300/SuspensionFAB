@@ -28,16 +28,35 @@ public enum ExpandOrientation {
     FAB_RIGHT(4);
 
     ExpandOrientation(int value) {
-        mValue = value;
+        this.value = value;
     }
 
-    private int mValue = 0;
+    private int value = 0;
 
+    /**
+     * 根据状态值获取枚举值
+     *
+     * @param value 值
+     * @return ExpandOrientation
+     */
+    public static ExpandOrientation getEnum(int value) {
+        if (value == FAB_TOP.getValue()) {
+            return ExpandOrientation.FAB_TOP;
+        } else if (value == FAB_BOTTOM.getValue()) {
+            return ExpandOrientation.FAB_BOTTOM;
+        } else if (value == FAB_LEFT.getValue()) {
+            return ExpandOrientation.FAB_LEFT;
+        } else if (value == FAB_RIGHT.getValue()) {
+            return ExpandOrientation.FAB_RIGHT;
+        } else {
+            return ExpandOrientation.FAB_TOP;
+        }
+    }
 
     /**
      * @return 枚举变量实际返回值
      */
     public int getValue() {
-        return mValue;
+        return value;
     }
 }
