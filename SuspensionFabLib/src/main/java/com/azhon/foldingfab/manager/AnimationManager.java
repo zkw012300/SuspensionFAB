@@ -2,6 +2,7 @@ package com.azhon.foldingfab.manager;
 
 import android.support.design.widget.FloatingActionButton;
 
+import com.azhon.foldingfab.ExpandOrientation;
 import com.azhon.foldingfab.SuspensionFab;
 
 /*
@@ -23,66 +24,20 @@ public abstract class AnimationManager {
 
     /**
      * 给按钮添加自定义动画
-     * 向上展开
+     * 展开动画
      *
-     * @param fab 按钮
+     * @param fab         按钮
+     * @param orientation 展开的方向
      */
-    public abstract void openAnimationTop(FloatingActionButton fab);
+    public abstract void openAnimation(FloatingActionButton fab, ExpandOrientation orientation);
 
     /**
      * 给按钮添加自定义动画
-     * 向下展开
+     * 折叠动画
      *
-     * @param fab 按钮
+     * @param fab         按钮
+     * @param orientation 展开的方向
      */
-    public abstract void openAnimationBottom(FloatingActionButton fab);
-
-    /**
-     * 给按钮添加自定义动画
-     * 向左展开
-     *
-     * @param fab 按钮
-     */
-    public abstract void openAnimationLeft(FloatingActionButton fab);
-
-    /**
-     * 给按钮添加自定义动画
-     * 向右展开
-     *
-     * @param fab 按钮
-     */
-    public abstract void openAnimationRight(FloatingActionButton fab);
-
-    /**
-     * 给按钮添加自定义动画
-     * 向上折叠
-     *
-     * @param fab 按钮
-     */
-    public abstract void closeAnimationTop(FloatingActionButton fab);
-
-    /**
-     * 给按钮添加自定义动画
-     * 向下折叠
-     *
-     * @param fab 按钮
-     */
-    public abstract void closeAnimationBottom(FloatingActionButton fab);
-
-    /**
-     * 给按钮添加自定义动画
-     * 向左折叠
-     *
-     * @param fab 按钮
-     */
-    public abstract void closeAnimationLeft(FloatingActionButton fab);
-
-    /**
-     * 给按钮添加自定义动画
-     * 向右折叠
-     *
-     * @param fab 按钮
-     */
-    public abstract void closeAnimationRight(FloatingActionButton fab);
+    public abstract void closeAnimation(FloatingActionButton fab, ExpandOrientation orientation);
 
 }

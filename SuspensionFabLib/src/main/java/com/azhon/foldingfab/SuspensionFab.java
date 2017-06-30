@@ -171,24 +171,32 @@ public class SuspensionFab extends RelativeLayout implements View.OnClickListene
             //位移的高度要加上按钮之间的间距
             if (orientation == ExpandOrientation.FAB_TOP.getValue()) {
                 //向上展开
-                viewAnimate(view, 0f, -(view.getHeight() * j + fabSpacing * j));
+                ObjectAnimator animator = ObjectAnimator.ofFloat(view, "translationY",
+                        0f, -(view.getHeight() * j + fabSpacing * j));
+                viewAnimate(view, animator);
                 if (animationManager != null)
-                    animationManager.openAnimationTop(view);
+                    animationManager.openAnimation(view, ExpandOrientation.FAB_TOP);
             } else if (orientation == ExpandOrientation.FAB_BOTTOM.getValue()) {
                 //向下展开
-                viewAnimate(view, 0f, view.getHeight() * j + fabSpacing * j);
+                ObjectAnimator animator = ObjectAnimator.ofFloat(view, "translationY",
+                        0f, view.getHeight() * j + fabSpacing * j);
+                viewAnimate(view, animator);
                 if (animationManager != null)
-                    animationManager.openAnimationBottom(view);
+                    animationManager.openAnimation(view, ExpandOrientation.FAB_BOTTOM);
             } else if (orientation == ExpandOrientation.FAB_LEFT.getValue()) {
                 //向左展开
-                viewAnimate(view, 0f, -(view.getWidth() * j + fabSpacing * j));
+                ObjectAnimator animator = ObjectAnimator.ofFloat(view, "translationX",
+                        0f, -(view.getWidth() * j + fabSpacing * j));
+                viewAnimate(view, animator);
                 if (animationManager != null)
-                    animationManager.openAnimationLeft(view);
+                    animationManager.openAnimation(view, ExpandOrientation.FAB_LEFT);
             } else if (orientation == ExpandOrientation.FAB_RIGHT.getValue()) {
                 //向右展开
-                viewAnimate(view, 0f, view.getWidth() * j + fabSpacing * j);
+                ObjectAnimator animator = ObjectAnimator.ofFloat(view, "translationX",
+                        0f, view.getWidth() * j + fabSpacing * j);
+                viewAnimate(view, animator);
                 if (animationManager != null)
-                    animationManager.openAnimationRight(view);
+                    animationManager.openAnimation(view, ExpandOrientation.FAB_RIGHT);
             }
         }
     }
@@ -201,29 +209,37 @@ public class SuspensionFab extends RelativeLayout implements View.OnClickListene
         //按照添加的顺序一次折叠按钮，去除默认的第一个按钮
         int j = getChildCount() - 1;
         for (int i = 0; i < getChildCount() - 1; i++) {
-            FloatingActionButton view = (FloatingActionButton) getChildAt(i);
             j--;
+            FloatingActionButton view = (FloatingActionButton) getChildAt(i);
             //位移的高度要加上按钮之间的间距
             if (orientation == ExpandOrientation.FAB_TOP.getValue()) {
                 //向上折叠
-                viewAnimate(view, -(view.getHeight() * j + fabSpacing * j), 0f);
+                ObjectAnimator animator = ObjectAnimator.ofFloat(view, "translationY",
+                        -(view.getHeight() * j + fabSpacing * j), 0f);
+                viewAnimate(view, animator);
                 if (animationManager != null)
-                    animationManager.closeAnimationTop(view);
+                    animationManager.closeAnimation(view, ExpandOrientation.FAB_TOP);
             } else if (orientation == ExpandOrientation.FAB_BOTTOM.getValue()) {
                 //向下折叠
-                viewAnimate(view, view.getHeight() * j + fabSpacing * j, 0f);
+                ObjectAnimator animator = ObjectAnimator.ofFloat(view, "translationY",
+                        view.getHeight() * j + fabSpacing * j, 0f);
+                viewAnimate(view, animator);
                 if (animationManager != null)
-                    animationManager.closeAnimationBottom(view);
+                    animationManager.closeAnimation(view, ExpandOrientation.FAB_BOTTOM);
             } else if (orientation == ExpandOrientation.FAB_LEFT.getValue()) {
                 //向左折叠
-                viewAnimate(view, -(view.getWidth() * j + fabSpacing * j), 0f);
+                ObjectAnimator animator = ObjectAnimator.ofFloat(view, "translationX",
+                        -(view.getWidth() * j + fabSpacing * j), 0f);
+                viewAnimate(view, animator);
                 if (animationManager != null)
-                    animationManager.closeAnimationLeft(view);
+                    animationManager.closeAnimation(view, ExpandOrientation.FAB_LEFT);
             } else if (orientation == ExpandOrientation.FAB_RIGHT.getValue()) {
                 //向右折叠
-                viewAnimate(view, view.getWidth() * j + fabSpacing * j, 0f);
+                ObjectAnimator animator = ObjectAnimator.ofFloat(view, "translationX",
+                        view.getWidth() * j + fabSpacing * j, 0f);
+                viewAnimate(view, animator);
                 if (animationManager != null)
-                    animationManager.closeAnimationRight(view);
+                    animationManager.closeAnimation(view, ExpandOrientation.FAB_RIGHT);
             }
         }
     }
@@ -232,23 +248,7 @@ public class SuspensionFab extends RelativeLayout implements View.OnClickListene
      * view的位移动画
      */
     @SuppressLint("ObjectAnimatorBinding")
-    private void viewAnimate(final Object target, float... values) {
-        ObjectAnimator animator = null;
-        //当为竖直方向时
-        if (orientation == ExpandOrientation.FAB_TOP.getValue() ||
-                orientation == ExpandOrientation.FAB_BOTTOM.getValue()) {
-            animator = ObjectAnimator.ofFloat(target, "translationY", values);
-        } else
-            //当为水平方向时
-            if (orientation == ExpandOrientation.FAB_LEFT.getValue() ||
-                    orientation == ExpandOrientation.FAB_RIGHT.getValue()) {
-                animator = ObjectAnimator.ofFloat(target, "translationX", values);
-            }
-        if (animator == null) {
-            Log.e(TAG, "请设置按钮展开的方向");
-            return;
-        }
-        animator.setFloatValues(values);
+    private void viewAnimate(final Object target, ObjectAnimator animator) {
         animator.setDuration(animateDuration);
         animator.start();
         animator.addListener(new AnimatorListenerAdapter() {

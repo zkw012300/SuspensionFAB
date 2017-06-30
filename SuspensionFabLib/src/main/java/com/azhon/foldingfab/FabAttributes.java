@@ -24,9 +24,6 @@ public final class FabAttributes {
     }
 
     public static class Builder {
-
-        //fab的边框
-        public int borderWidth = 0;
         //插入的图片
         public Drawable src;
         //fab的背景色
@@ -43,11 +40,6 @@ public final class FabAttributes {
         public Object tag;
 
         public Builder() {
-        }
-
-        public Builder setBorderWidth(int borderWidth) {
-            this.borderWidth = borderWidth;
-            return this;
         }
 
         public Builder setSrc(Drawable src) {
