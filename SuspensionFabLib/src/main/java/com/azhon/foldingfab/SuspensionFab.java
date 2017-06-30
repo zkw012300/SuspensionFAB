@@ -66,6 +66,10 @@ public class SuspensionFab extends RelativeLayout implements View.OnClickListene
      * 按钮点击事件
      */
     private OnFabClickListener fabClickListener;
+    /**
+     * 默认状态下的布局参数
+     */
+    private ViewGroup.LayoutParams defaultParams;
 
     public SuspensionFab(Context context) {
         super(context);
@@ -277,34 +281,21 @@ public class SuspensionFab extends RelativeLayout implements View.OnClickListene
      * 设置展开的viewGroup大小
      */
     private void setLayoutHeightOrWidth() {
+        View view = getFabFromTag(defaultTag);
         if (currentState) {
-            int height = 0;
-            int width = 0;
-            for (int i = 0; i < getChildCount(); i++) {
-                View childView = getChildAt(i);
-                if (orientation == ExpandOrientation.FAB_TOP.getValue() ||
-                        orientation == ExpandOrientation.FAB_BOTTOM.getValue()) {
-                    height += childView.getHeight() + fabSpacing;
-                } else if (orientation == ExpandOrientation.FAB_LEFT.getValue() ||
-                        orientation == ExpandOrientation.FAB_RIGHT.getValue()) {
-                    width += childView.getWidth() + fabSpacing;
-                }
-            }
+            int height = view.getHeight() * getChildCount() + fabSpacing * getChildCount();
             ViewGroup.LayoutParams layoutParams = getLayoutParams();
-            if (height != 0) {
+            if (orientation == ExpandOrientation.FAB_TOP.getValue() ||
+                    orientation == ExpandOrientation.FAB_BOTTOM.getValue()) {
                 layoutParams.height = height;
-            }
-            if (width != 0) {
-                layoutParams.width = width;
+            } else if (orientation == ExpandOrientation.FAB_LEFT.getValue() ||
+                    orientation == ExpandOrientation.FAB_RIGHT.getValue()) {
+                layoutParams.width = height;
             }
             setLayoutParams(layoutParams);
         } else {
-            View view = getFabFromTag(defaultTag);
-            ViewGroup.LayoutParams layoutParams = getLayoutParams();
-            layoutParams.height = view.getHeight();
-            layoutParams.width = view.getWidth();
-            setLayoutParams(layoutParams);
         }
+
         if (orientation == ExpandOrientation.FAB_TOP.getValue()) {
             setGravity(Gravity.BOTTOM);
         } else if (orientation == ExpandOrientation.FAB_LEFT.getValue()) {
