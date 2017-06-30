@@ -5,7 +5,7 @@ import android.animation.ObjectAnimator;
 import android.support.design.widget.FloatingActionButton;
 import android.view.animation.DecelerateInterpolator;
 
-import com.azhon.foldingfab.ExpandOrientation;
+import com.azhon.suspensionfab.ExpandOrientation;
 import com.azhon.suspensionfab.SuspensionFab;
 import com.azhon.suspensionfab.manager.AnimationManager;
 

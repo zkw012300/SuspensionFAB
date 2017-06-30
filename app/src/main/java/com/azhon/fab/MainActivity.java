@@ -70,6 +70,6 @@ public class MainActivity extends AppCompatActivity implements OnFabClickListene
 
     @Override
     public void onFabClick(FloatingActionButton fab, Object tag) {
-        Toast.makeText(MainActivity.this, tag + "", Toast.LENGTH_SHORT).show();
+        Toast.makeText(MainActivity.this, "点击了第" + tag + "个", Toast.LENGTH_SHORT).show();
     }
 }
