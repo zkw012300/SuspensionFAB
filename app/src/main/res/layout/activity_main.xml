@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     tools:context="com.azhon.fab.MainActivity">
 
-    <com.azhon.foldingfab.SuspensionFab
+    <com.azhon.suspensionfab.SuspensionFab
         android:id="@+id/fab_bottom"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -14,7 +14,7 @@
         a_zhon:fab_orientation="bottom"
         a_zhon:fab_spacing="10dp" />
 
-    <com.azhon.foldingfab.SuspensionFab
+    <com.azhon.suspensionfab.SuspensionFab
         android:id="@+id/fab_right"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -23,7 +23,7 @@
         a_zhon:fab_orientation="right"
         a_zhon:fab_spacing="10dp" />
 
-    <com.azhon.foldingfab.SuspensionFab
+    <com.azhon.suspensionfab.SuspensionFab
         android:id="@+id/fab_top"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -33,7 +33,7 @@
         a_zhon:fab_orientation="top"
         a_zhon:fab_spacing="10dp" />
 
-    <com.azhon.foldingfab.SuspensionFab
+    <com.azhon.suspensionfab.SuspensionFab
         android:id="@+id/fab_left"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

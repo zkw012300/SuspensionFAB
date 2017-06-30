@@ -1,4 +1,4 @@
-package com.azhon.foldingfab;
+package com.azhon.suspensionfab;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
@@ -17,11 +17,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.RelativeLayout;
 
-import com.azhon.foldingfab.manager.AnimationManager;
+import com.azhon.foldingfab.ExpandOrientation;
+import com.azhon.suspensionfab.manager.AnimationManager;
 
 /*
  * 项目名:    SuspensionFAB
- * 包名       com.azhon.foldingfab
+ * 包名       com.azhon.suspensionfab
  * 文件名:    SuspensionFab
  * 创建者:    ZSY
  * 创建时间:  2017/6/28 on 16:43
@@ -66,10 +67,6 @@ public class SuspensionFab extends RelativeLayout implements View.OnClickListene
      * 按钮点击事件
      */
     private OnFabClickListener fabClickListener;
-    /**
-     * 默认状态下的布局参数
-     */
-    private ViewGroup.LayoutParams defaultParams;
 
     public SuspensionFab(Context context) {
         super(context);

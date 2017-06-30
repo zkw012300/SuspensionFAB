@@ -1,4 +1,4 @@
-package com.azhon.foldingfab;
+package com.azhon.suspensionfab;
 
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
@@ -6,7 +6,7 @@ import android.support.design.widget.FloatingActionButton;
 
 /*
  * 项目名:    SuspensionFAB
- * 包名       com.azhon.foldingfab
+ * 包名       com.azhon.suspensionfab
  * 文件名:    FabAttributes
  * 创建者:    ZSY
  * 创建时间:  2017/6/28 on 18:20

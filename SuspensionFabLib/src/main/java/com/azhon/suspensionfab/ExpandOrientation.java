@@ -2,7 +2,7 @@ package com.azhon.foldingfab;
 
 /*
  * 项目名:    SuspensionFAB
- * 包名       com.azhon.foldingfab
+ * 包名       com.azhon.suspensionfab
  * 文件名:    ExpandOrientation
  * 创建者:    ZSY
  * 创建时间:  2017/6/29 on 16:57

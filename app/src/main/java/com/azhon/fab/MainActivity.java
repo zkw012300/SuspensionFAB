@@ -6,9 +6,10 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.Toast;
 
-import com.azhon.foldingfab.FabAttributes;
-import com.azhon.foldingfab.OnFabClickListener;
-import com.azhon.foldingfab.SuspensionFab;
+import com.azhon.suspensionfab.FabAttributes;
+import com.azhon.suspensionfab.OnFabClickListener;
+import com.azhon.suspensionfab.SuspensionFab;
+
 
 /**
  * 项目名:     SuspensionFAB

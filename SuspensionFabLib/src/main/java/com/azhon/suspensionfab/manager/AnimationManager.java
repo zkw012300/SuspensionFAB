@@ -1,13 +1,13 @@
-package com.azhon.foldingfab.manager;
+package com.azhon.suspensionfab.manager;
 
 import android.support.design.widget.FloatingActionButton;
 
 import com.azhon.foldingfab.ExpandOrientation;
-import com.azhon.foldingfab.SuspensionFab;
+import com.azhon.suspensionfab.SuspensionFab;
 
 /*
  * 项目名:     Fab
- * 包名:       com.azhon.foldingfab
+ * 包名:       com.azhon.suspensionfab.manager
  * 文件名:     AnimationManager
  * 创建者:     阿钟
  * 创建时间:   2017/6/29 23:05
