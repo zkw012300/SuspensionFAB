@@ -6,7 +6,7 @@
         <!--默认展开还是折叠-->
         <attr name="fab_state" format="boolean" />
         <!--展开的方向-->
-        <attr name="fab_direction" format="enum">
+        <attr name="fab_orientation" format="enum">
             <enum name="top" value="1" />
             <enum name="bottom" value="2" />
             <enum name="left" value="3" />

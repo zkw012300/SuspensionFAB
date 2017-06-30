@@ -3,12 +3,12 @@ package com.azhon.foldingfab;
 /*
  * 项目名:    SuspensionFAB
  * 包名       com.azhon.foldingfab
- * 文件名:    ExpandDirection
+ * 文件名:    ExpandOrientation
  * 创建者:    ZSY
  * 创建时间:  2017/6/29 on 16:57
  * 描述:     TODO 折叠按钮的展开方向
  */
-public enum ExpandDirection {
+public enum ExpandOrientation {
 
     /**
      * 按钮的上边
@@ -27,7 +27,7 @@ public enum ExpandDirection {
      */
     FAB_RIGHT(4);
 
-    ExpandDirection(int value) {
+    ExpandOrientation(int value) {
         mValue = value;
     }
 

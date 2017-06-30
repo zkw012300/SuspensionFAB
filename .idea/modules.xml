@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/Fab.iml" filepath="$PROJECT_DIR$/Fab.iml" />
-      <module fileurl="file://$PROJECT_DIR$/FoldingFabLib/FoldingFabLib.iml" filepath="$PROJECT_DIR$/FoldingFabLib/FoldingFabLib.iml" />
+      <module fileurl="file://$PROJECT_DIR$/SuspensionFAB.iml" filepath="$PROJECT_DIR$/SuspensionFAB.iml" />
+      <module fileurl="file://$PROJECT_DIR$/SuspensionFabLib/SuspensionFabLib.iml" filepath="$PROJECT_DIR$/SuspensionFabLib/SuspensionFabLib.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
     </modules>
   </component>

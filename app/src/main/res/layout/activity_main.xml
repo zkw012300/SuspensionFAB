@@ -13,7 +13,7 @@
         android:layout_height="70dp"
         android:layout_margin="10dp"
         android:gravity="center"
-        a_zhon:fab_direction="bottom"
+        a_zhon:fab_orientation="bottom"
         a_zhon:fab_spacing="10dp"
         a_zhon:fab_state="true" />
 
@@ -24,7 +24,7 @@
         android:layout_alignParentBottom="true"
         android:layout_margin="10dp"
         android:gravity="center"
-        a_zhon:fab_direction="right"
+        a_zhon:fab_orientation="right"
         a_zhon:fab_spacing="10dp"
         a_zhon:fab_state="false" />
 
@@ -36,7 +36,7 @@
         android:layout_alignParentRight="true"
         android:layout_margin="10dp"
         android:gravity="center"
-        a_zhon:fab_direction="top"
+        a_zhon:fab_orientation="top"
         a_zhon:fab_spacing="10dp"
         a_zhon:fab_state="false" />
 
@@ -47,7 +47,7 @@
         android:layout_alignParentRight="true"
         android:layout_margin="10dp"
         android:gravity="center"
-        a_zhon:fab_direction="left"
+        a_zhon:fab_orientation="left"
         a_zhon:fab_spacing="10dp"
         a_zhon:fab_state="false" />
 

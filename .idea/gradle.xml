@@ -8,7 +8,7 @@
         <option name="modules">
           <set>
             <option value="$PROJECT_DIR$" />
-            <option value="$PROJECT_DIR$/FoldingFabLib" />
+            <option value="$PROJECT_DIR$/SuspensionFabLib" />
             <option value="$PROJECT_DIR$/app" />
           </set>
         </option>

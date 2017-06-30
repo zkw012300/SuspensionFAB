@@ -1,1 +1,1 @@
-include ':app', ':FoldingFabLib'
+include ':app', ':SuspensionFabLib'

@@ -59,7 +59,7 @@ public class SuspensionFab extends RelativeLayout implements View.OnClickListene
     /**
      * 默认展开在按钮的上方
      */
-    private int direction;
+    private int orientation;
     /**
      * 动画管理者
      */
@@ -87,7 +87,7 @@ public class SuspensionFab extends RelativeLayout implements View.OnClickListene
         TypedArray array = context.obtainStyledAttributes(attrs, R.styleable.a_zhon);
         fabSpacing = array.getDimensionPixelSize(R.styleable.a_zhon_fab_spacing, dip2px(10));
         fabState = array.getBoolean(R.styleable.a_zhon_fab_state, false);
-        direction = array.getInt(R.styleable.a_zhon_fab_direction, ExpandDirection.FAB_TOP.getValue());
+        orientation = array.getInt(R.styleable.a_zhon_fab_orientation, ExpandOrientation.FAB_TOP.getValue());
         currentState = fabState;
         //TypedArray需要被回收
         array.recycle();
@@ -169,22 +169,22 @@ public class SuspensionFab extends RelativeLayout implements View.OnClickListene
             FloatingActionButton view = (FloatingActionButton) getChildAt(i - 1);
             setVisible(view, true);
             //位移的高度要加上按钮之间的间距
-            if (direction == ExpandDirection.FAB_TOP.getValue()) {
+            if (orientation == ExpandOrientation.FAB_TOP.getValue()) {
                 //向上展开
                 viewAnimate(view, 0f, -(view.getHeight() * j + fabSpacing * j));
                 if (animationManager != null)
                     animationManager.openAnimationTop(view);
-            } else if (direction == ExpandDirection.FAB_BOTTOM.getValue()) {
+            } else if (orientation == ExpandOrientation.FAB_BOTTOM.getValue()) {
                 //向下展开
                 viewAnimate(view, 0f, view.getHeight() * j + fabSpacing * j);
                 if (animationManager != null)
                     animationManager.openAnimationBottom(view);
-            } else if (direction == ExpandDirection.FAB_LEFT.getValue()) {
+            } else if (orientation == ExpandOrientation.FAB_LEFT.getValue()) {
                 //向左展开
                 viewAnimate(view, 0f, -(view.getWidth() * j + fabSpacing * j));
                 if (animationManager != null)
                     animationManager.openAnimationLeft(view);
-            } else if (direction == ExpandDirection.FAB_RIGHT.getValue()) {
+            } else if (orientation == ExpandOrientation.FAB_RIGHT.getValue()) {
                 //向右展开
                 viewAnimate(view, 0f, view.getWidth() * j + fabSpacing * j);
                 if (animationManager != null)
@@ -204,22 +204,22 @@ public class SuspensionFab extends RelativeLayout implements View.OnClickListene
             FloatingActionButton view = (FloatingActionButton) getChildAt(i);
             j--;
             //位移的高度要加上按钮之间的间距
-            if (direction == ExpandDirection.FAB_TOP.getValue()) {
+            if (orientation == ExpandOrientation.FAB_TOP.getValue()) {
                 //向上折叠
                 viewAnimate(view, -(view.getHeight() * j + fabSpacing * j), 0f);
                 if (animationManager != null)
                     animationManager.closeAnimationTop(view);
-            } else if (direction == ExpandDirection.FAB_BOTTOM.getValue()) {
+            } else if (orientation == ExpandOrientation.FAB_BOTTOM.getValue()) {
                 //向下折叠
                 viewAnimate(view, view.getHeight() * j + fabSpacing * j, 0f);
                 if (animationManager != null)
                     animationManager.closeAnimationBottom(view);
-            } else if (direction == ExpandDirection.FAB_LEFT.getValue()) {
+            } else if (orientation == ExpandOrientation.FAB_LEFT.getValue()) {
                 //向左折叠
                 viewAnimate(view, -(view.getWidth() * j + fabSpacing * j), 0f);
                 if (animationManager != null)
                     animationManager.closeAnimationLeft(view);
-            } else if (direction == ExpandDirection.FAB_RIGHT.getValue()) {
+            } else if (orientation == ExpandOrientation.FAB_RIGHT.getValue()) {
                 //向右折叠
                 viewAnimate(view, view.getWidth() * j + fabSpacing * j, 0f);
                 if (animationManager != null)
@@ -235,13 +235,13 @@ public class SuspensionFab extends RelativeLayout implements View.OnClickListene
     private void viewAnimate(final Object target, float... values) {
         ObjectAnimator animator = null;
         //当为竖直方向时
-        if (direction == ExpandDirection.FAB_TOP.getValue() ||
-                direction == ExpandDirection.FAB_BOTTOM.getValue()) {
+        if (orientation == ExpandOrientation.FAB_TOP.getValue() ||
+                orientation == ExpandOrientation.FAB_BOTTOM.getValue()) {
             animator = ObjectAnimator.ofFloat(target, "translationY", values);
         } else
             //当为水平方向时
-            if (direction == ExpandDirection.FAB_LEFT.getValue() ||
-                    direction == ExpandDirection.FAB_RIGHT.getValue()) {
+            if (orientation == ExpandOrientation.FAB_LEFT.getValue() ||
+                    orientation == ExpandOrientation.FAB_RIGHT.getValue()) {
                 animator = ObjectAnimator.ofFloat(target, "translationX", values);
             }
         if (animator == null) {
