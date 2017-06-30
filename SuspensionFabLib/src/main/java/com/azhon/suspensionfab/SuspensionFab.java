@@ -179,6 +179,8 @@ public class SuspensionFab extends RelativeLayout implements View.OnClickListene
         for (int i = getChildCount() - 1; i > 0; i--) {
             j++;
             FloatingActionButton view = (FloatingActionButton) getChildAt(i - 1);
+            int defaultHeight = getFabFromTag(defaultTag).getHeight();
+            //fab位移的距离
             int displacement = view.getHeight() * j + fabSpacing * j;
             setVisible(view, true);
             //位移的高度要加上按钮之间的间距
@@ -189,6 +191,10 @@ public class SuspensionFab extends RelativeLayout implements View.OnClickListene
                 if (animationManager != null)
                     animationManager.openAnimation(view, ExpandOrientation.FAB_TOP);
             } else if (orientation == ExpandOrientation.FAB_BOTTOM.getValue()) {
+                //因为view默认在左上角，所以高度会有个差距
+                if (view.getHeight() < defaultHeight) {
+                    displacement += defaultHeight - view.getHeight();
+                }
                 //向下展开
                 ObjectAnimator animator = ObjectAnimator.ofFloat(view, "translationY", 0f, displacement);
                 viewAnimate(view, animator);
@@ -201,6 +207,9 @@ public class SuspensionFab extends RelativeLayout implements View.OnClickListene
                 if (animationManager != null)
                     animationManager.openAnimation(view, ExpandOrientation.FAB_LEFT);
             } else if (orientation == ExpandOrientation.FAB_RIGHT.getValue()) {
+                if (view.getHeight() < defaultHeight) {
+                    displacement += defaultHeight - view.getHeight();
+                }
                 //向右展开
                 ObjectAnimator animator = ObjectAnimator.ofFloat(view, "translationX", 0f, displacement);
                 viewAnimate(view, animator);
