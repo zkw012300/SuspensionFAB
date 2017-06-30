@@ -12,7 +12,9 @@ import android.os.Handler;
 import android.support.design.widget.FloatingActionButton;
 import android.util.AttributeSet;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.RelativeLayout;
 
 import com.azhon.foldingfab.manager.AnimationManager;
@@ -45,10 +47,6 @@ public class SuspensionFab extends RelativeLayout implements View.OnClickListene
      */
     private int fabSpacing;
     /**
-     * 按钮默认是否展开 默认折叠   true为展开
-     */
-    private boolean fabState = false;
-    /**
      * 按钮当前是否是展开还是关闭状态   true为展开
      */
     private boolean currentState;
@@ -64,6 +62,10 @@ public class SuspensionFab extends RelativeLayout implements View.OnClickListene
      * 动画管理者
      */
     private AnimationManager animationManager;
+    /**
+     * 按钮点击事件
+     */
+    private OnFabClickListener fabClickListener;
 
     public SuspensionFab(Context context) {
         super(context);
@@ -83,12 +85,11 @@ public class SuspensionFab extends RelativeLayout implements View.OnClickListene
     /**
      * 加载自定义的属性
      */
+    @SuppressLint("CustomViewStyleable")
     private void loadAttrs(Context context, AttributeSet attrs) {
         TypedArray array = context.obtainStyledAttributes(attrs, R.styleable.a_zhon);
         fabSpacing = array.getDimensionPixelSize(R.styleable.a_zhon_fab_spacing, dip2px(10));
-        fabState = array.getBoolean(R.styleable.a_zhon_fab_state, false);
         orientation = array.getInt(R.styleable.a_zhon_fab_orientation, ExpandOrientation.FAB_TOP.getValue());
-        currentState = fabState;
         //TypedArray需要被回收
         array.recycle();
     }
@@ -100,6 +101,7 @@ public class SuspensionFab extends RelativeLayout implements View.OnClickListene
      */
     private void init(Context context) {
         this.context = context;
+        setBackground(null);
         //添加默认显示的一个按钮
         FabAttributes build = new FabAttributes.Builder()
                 .setSrc(context.getResources().getDrawable(R.drawable.add))
@@ -126,21 +128,12 @@ public class SuspensionFab extends RelativeLayout implements View.OnClickListene
             for (FabAttributes attr : attrs) {
                 FabAttributes.Builder b = attr.getBuilder();
                 FloatingActionButton fab = new FloatingActionButton(context);
-                fab.setVisibility(INVISIBLE);
+                fab.setOnClickListener(this);
+                setVisible(fab, false);
                 setAttributes(fab, b);
                 //后面添加的按钮一直放在第一个位置
                 addView(fab, 0);
             }
-            //判断view是否需要被展开
-            if (fabState) {
-                new Handler().postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        openAnimate();
-                    }
-                }, 100);
-            }
-
         }
     }
 
@@ -154,6 +147,10 @@ public class SuspensionFab extends RelativeLayout implements View.OnClickListene
                 //关闭
                 closeAnimate();
             }
+        } else {
+            if (fabClickListener != null) {
+                fabClickListener.onFabClick((FloatingActionButton) v, v.getTag());
+            }
         }
     }
 
@@ -162,6 +159,7 @@ public class SuspensionFab extends RelativeLayout implements View.OnClickListene
      */
     private void openAnimate() {
         currentState = true;
+        setLayoutHeightOrWidth();
         if (animationManager != null) {
             animationManager.defaultFabAnimation(getFabFromTag(defaultTag), ExpandOrientation.getEnum(orientation), currentState);
         }
@@ -248,6 +246,13 @@ public class SuspensionFab extends RelativeLayout implements View.OnClickListene
                     animationManager.closeAnimation(view, ExpandOrientation.FAB_RIGHT);
             }
         }
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                //动画结束后调用
+                setLayoutHeightOrWidth();
+            }
+        }, animateDuration);
     }
 
     /**
@@ -261,10 +266,50 @@ public class SuspensionFab extends RelativeLayout implements View.OnClickListene
             @Override
             public void onAnimationEnd(Animator animation) {
                 //当为折叠状态的时候
-                if (!currentState)
+                if (!currentState) {
                     setVisible(((View) target), false);
+                }
             }
         });
+    }
+
+    /**
+     * 设置展开的viewGroup大小
+     */
+    private void setLayoutHeightOrWidth() {
+        if (currentState) {
+            int height = 0;
+            int width = 0;
+            for (int i = 0; i < getChildCount(); i++) {
+                View childView = getChildAt(i);
+                if (orientation == ExpandOrientation.FAB_TOP.getValue() ||
+                        orientation == ExpandOrientation.FAB_BOTTOM.getValue()) {
+                    height += childView.getHeight() + fabSpacing;
+                } else if (orientation == ExpandOrientation.FAB_LEFT.getValue() ||
+                        orientation == ExpandOrientation.FAB_RIGHT.getValue()) {
+                    width += childView.getWidth() + fabSpacing;
+                }
+            }
+            ViewGroup.LayoutParams layoutParams = getLayoutParams();
+            if (height != 0) {
+                layoutParams.height = height;
+            }
+            if (width != 0) {
+                layoutParams.width = width;
+            }
+            setLayoutParams(layoutParams);
+        } else {
+            View view = getFabFromTag(defaultTag);
+            ViewGroup.LayoutParams layoutParams = getLayoutParams();
+            layoutParams.height = view.getHeight();
+            layoutParams.width = view.getWidth();
+            setLayoutParams(layoutParams);
+        }
+        if (orientation == ExpandOrientation.FAB_TOP.getValue()) {
+            setGravity(Gravity.BOTTOM);
+        } else if (orientation == ExpandOrientation.FAB_LEFT.getValue()) {
+            setGravity(Gravity.RIGHT);
+        }
     }
 
     /**
@@ -359,6 +404,15 @@ public class SuspensionFab extends RelativeLayout implements View.OnClickListene
      */
     public void setAnimationManager(AnimationManager animationManager) {
         this.animationManager = animationManager;
+    }
+
+    /**
+     * 设置按钮点击事件
+     *
+     * @param fabClickListener 监听
+     */
+    public void setFabClickListener(OnFabClickListener fabClickListener) {
+        this.fabClickListener = fabClickListener;
     }
 
     /***

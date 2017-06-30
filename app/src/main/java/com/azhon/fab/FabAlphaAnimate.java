@@ -12,7 +12,7 @@ import com.azhon.foldingfab.manager.AnimationManager;
 
 /**
  * 项目名:     SuspensionFAB
- * 包名:       com.azhon.foldingfab
+ * 包名:       com.azhon.fab
  * 文件名:     FabAlphaAnimate
  * 创建者:     阿钟
  * 创建时间:   2017/6/29 23:12
@@ -60,12 +60,22 @@ public class FabAlphaAnimate extends AnimationManager {
     }
 
     @Override
-    public void closeAnimation(FloatingActionButton fab, ExpandOrientation orientation) {
-
+    public void closeAnimation(final FloatingActionButton fab, ExpandOrientation orientation) {
+        switch (orientation) {
+            case FAB_TOP:
+                break;
+            case FAB_BOTTOM:
+                break;
+            case FAB_LEFT:
+                break;
+            case FAB_RIGHT:
+                break;
+        }
     }
 
     @Override
-    public void defaultFabAnimation(FloatingActionButton fab, ExpandOrientation orientation, boolean currentState) {
+    public void defaultFabAnimation(FloatingActionButton fab, ExpandOrientation orientation,
+                                    boolean currentState) {
         if (currentState) {
             ObjectAnimator animator = ObjectAnimator.ofFloat(fab, "rotation", 0, 45);
             animator.setDuration(fabView.getAnimateDuration());

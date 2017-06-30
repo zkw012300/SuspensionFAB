@@ -3,8 +3,6 @@
     <declare-styleable name="a_zhon">
         <!--两个按钮间的间距-->
         <attr name="fab_spacing" format="dimension" />
-        <!--默认展开还是折叠-->
-        <attr name="fab_state" format="boolean" />
         <!--展开的方向-->
         <attr name="fab_orientation" format="enum">
             <enum name="top" value="1" />

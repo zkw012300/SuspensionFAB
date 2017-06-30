@@ -11,7 +11,7 @@ import com.azhon.foldingfab.SuspensionFab;
  * 文件名:     AnimationManager
  * 创建者:     阿钟
  * 创建时间:   2017/6/29 23:05
- * 描述:       TODO 用来实现自定义动画，请务必使用属性动画
+ * 描述:       TODO 用来实现自定义动画
  */
 
 public abstract class AnimationManager {
