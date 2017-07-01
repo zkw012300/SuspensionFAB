@@ -2,10 +2,66 @@
 
 ### 二：效果图
 
-<embed src="https://github.com/azhong1011/SuspensionFAB/blob/master/screenshot/suspension.mp4" width="320" height="240"/>
+<img src="https://github.com/azhong1011/SuspensionFAB/blob/master/screenshot/suspension.gif"/>
 
 ### 三：使用介绍
 xml属性   | 描述 | 值
 -------- | --- | ---
 a_zhon:fab_spacing | 两个按钮之间的间距 | dimension
 a_zhon:fab_orientation| 菜单的展开方向 | top bottom left right
+
+### 四：在gradle依赖这个library
+```
+<dependency>
+  <groupId>com.azhon</groupId>
+  <artifactId>suspension-fab</artifactId>
+  <version>1.0.0</version>
+</dependency>
+
+compile 'com.azhon:suspension-fab:1.0.0'
+```
+### 五：布局使用
+```
+<com.azhon.suspensionfab.SuspensionFab
+    android:id="@+id/fab_top"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    a_zhon:fab_orientation="top"
+    a_zhon:fab_spacing="10dp" />
+```
+### 需要在SuspensionFab的父级ViewGroup中添加android:clipChildren="false" 属性
+
+### 六：添加展开菜单
+```
+SuspensionFab fabTop = (SuspensionFab) findViewById(R.id.fab_top);
+//构建展开按钮属性
+FabAttributes collection = new FabAttributes.Builder()
+        .setBackgroundTint(Color.parseColor("#2096F3"))
+        .setSrc(getResources().getDrawable(R.drawable.like))
+        .setFabSize(FloatingActionButton.SIZE_MINI)
+        .setPressedTranslationZ(10)
+        .setTag(1)
+        .build();
+FabAttributes email = new FabAttributes.Builder()
+        .setBackgroundTint(Color.parseColor("#FF9800"))
+        .setSrc(getResources().getDrawable(R.drawable.mail))
+        .setFabSize(FloatingActionButton.SIZE_MINI)
+        .setPressedTranslationZ(10)
+        .setTag(2)
+        .build();
+FabAttributes news = new FabAttributes.Builder()
+        .setBackgroundTint(Color.parseColor("#03A9F4"))
+        .setSrc(getResources().getDrawable(R.drawable.news))
+        .setFabSize(FloatingActionButton.SIZE_MINI)
+        .setPressedTranslationZ(10)
+        .setTag(3)
+        .build();
+//添加菜单
+fabTop.addFab(collection, email, news);
+//设置菜单点击事件
+fabTop.setFabClickListener(this);
+```
+### 七：提供自定义每个按钮的动画（AnimationManager）
+> 继承（extends）AnimationManager 并实现里面的方法实现自己想要的动画 （可以查看Demo里的使用案例）
+`fabTop.setAnimationManager(new FabAlphaAnimate(fabTop));`//设置自定义的动画
+### 如果觉得不错就留下你的star吧......
