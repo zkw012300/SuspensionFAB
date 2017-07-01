@@ -306,7 +306,6 @@ public class SuspensionFab extends RelativeLayout implements View.OnClickListene
      *
      * @param defaultTag 标记
      */
-
     public void setDefaultTag(Object defaultTag) {
         try {
             FloatingActionButton fab = getFabFromTag(this.defaultTag);
@@ -335,6 +334,8 @@ public class SuspensionFab extends RelativeLayout implements View.OnClickListene
 
     /**
      * 设置按钮属性
+     * @param fab 按鈕
+     * @param b 按鈕的参数
      */
     private void setAttributes(FloatingActionButton fab, FabAttributes.Builder b) {
         fab.setTag(b.tag);
@@ -351,7 +352,7 @@ public class SuspensionFab extends RelativeLayout implements View.OnClickListene
     /**
      * 设置view的显示隐藏
      *
-     * @param view
+     * @param view 按钮
      * @param isVisible 是否显示
      */
     private void setVisible(View view, boolean isVisible) {

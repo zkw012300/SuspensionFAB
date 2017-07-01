@@ -13,6 +13,7 @@ import android.support.design.widget.FloatingActionButton;
  * 描述:     TODO 定义fab的属性
  */
 public final class FabAttributes {
+
     private FabAttributes.Builder builder;
 
     private FabAttributes(FabAttributes.Builder builder) {

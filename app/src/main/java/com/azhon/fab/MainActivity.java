@@ -43,7 +43,7 @@ public class MainActivity extends AppCompatActivity implements OnFabClickListene
         FabAttributes email = new FabAttributes.Builder()
                 .setBackgroundTint(Color.parseColor("#FF9800"))
                 .setSrc(getResources().getDrawable(R.drawable.mail))
-                .setFabSize(FloatingActionButton.SIZE_NORMAL)
+                .setFabSize(FloatingActionButton.SIZE_MINI)
                 .setPressedTranslationZ(10)
                 .setTag(2)
                 .build();
@@ -51,7 +51,7 @@ public class MainActivity extends AppCompatActivity implements OnFabClickListene
         FabAttributes news = new FabAttributes.Builder()
                 .setBackgroundTint(Color.parseColor("#03A9F4"))
                 .setSrc(getResources().getDrawable(R.drawable.news))
-                .setFabSize(FloatingActionButton.SIZE_NORMAL)
+                .setFabSize(FloatingActionButton.SIZE_MINI)
                 .setPressedTranslationZ(10)
                 .setTag(3)
                 .build();
@@ -70,6 +70,14 @@ public class MainActivity extends AppCompatActivity implements OnFabClickListene
 
     @Override
     public void onFabClick(FloatingActionButton fab, Object tag) {
-        Toast.makeText(MainActivity.this, "点击了第" + tag + "个", Toast.LENGTH_SHORT).show();
+        String msg="";
+        if (tag.equals(1)) {
+            msg="收藏";
+        }else if (tag.equals(2)){
+            msg="邮件";
+        } else if (tag.equals(3)){
+            msg="消息";
+        }
+        Toast.makeText(this, "点击了" + msg ,Toast.LENGTH_SHORT).show();
     }
 }
