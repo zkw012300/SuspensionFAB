@@ -187,31 +187,24 @@ public class SuspensionFab extends RelativeLayout implements View.OnClickListene
             //fab位移的距离
             displacement += view.getHeight() + fabSpacing;
             setVisible(view, true);
-            //位移的高度要加上按钮之间的间距
+            if (animationManager != null)
+                animationManager.openAnimation(view, ExpandOrientation.getEnum(orientation));
             if (orientation == ExpandOrientation.FAB_TOP.getValue()) {
                 //向上展开
                 ObjectAnimator animator = ObjectAnimator.ofFloat(view, "translationY", 0f, -displacement);
                 viewAnimate(view, animator);
-                if (animationManager != null)
-                    animationManager.openAnimation(view, ExpandOrientation.FAB_TOP);
             } else if (orientation == ExpandOrientation.FAB_BOTTOM.getValue()) {
                 //向下展开
                 ObjectAnimator animator = ObjectAnimator.ofFloat(view, "translationY", 0f, displacement);
                 viewAnimate(view, animator);
-                if (animationManager != null)
-                    animationManager.openAnimation(view, ExpandOrientation.FAB_BOTTOM);
             } else if (orientation == ExpandOrientation.FAB_LEFT.getValue()) {
                 //向左展开
                 ObjectAnimator animator = ObjectAnimator.ofFloat(view, "translationX", 0f, -displacement);
                 viewAnimate(view, animator);
-                if (animationManager != null)
-                    animationManager.openAnimation(view, ExpandOrientation.FAB_LEFT);
             } else if (orientation == ExpandOrientation.FAB_RIGHT.getValue()) {
                 //向右展开
                 ObjectAnimator animator = ObjectAnimator.ofFloat(view, "translationX", 0f, displacement);
                 viewAnimate(view, animator);
-                if (animationManager != null)
-                    animationManager.openAnimation(view, ExpandOrientation.FAB_RIGHT);
             }
         }
     }
@@ -229,32 +222,26 @@ public class SuspensionFab extends RelativeLayout implements View.OnClickListene
         for (int i = 0; i < getChildCount() - 1; i++) {
             j--;
             FloatingActionButton view = (FloatingActionButton) getChildAt(i);
-            int displacement = view.getHeight() * j + fabSpacing * j;
             //位移的高度要加上按钮之间的间距
+            int displacement = view.getHeight() * j + fabSpacing * j;
+            if (animationManager != null)
+                animationManager.closeAnimation(view, ExpandOrientation.getEnum(orientation));
             if (orientation == ExpandOrientation.FAB_TOP.getValue()) {
                 //向上折叠
                 ObjectAnimator animator = ObjectAnimator.ofFloat(view, "translationY", -displacement, 0f);
                 viewAnimate(view, animator);
-                if (animationManager != null)
-                    animationManager.closeAnimation(view, ExpandOrientation.FAB_TOP);
             } else if (orientation == ExpandOrientation.FAB_BOTTOM.getValue()) {
                 //向下折叠
                 ObjectAnimator animator = ObjectAnimator.ofFloat(view, "translationY", displacement, 0f);
                 viewAnimate(view, animator);
-                if (animationManager != null)
-                    animationManager.closeAnimation(view, ExpandOrientation.FAB_BOTTOM);
             } else if (orientation == ExpandOrientation.FAB_LEFT.getValue()) {
                 //向左折叠
                 ObjectAnimator animator = ObjectAnimator.ofFloat(view, "translationX", -displacement, 0f);
                 viewAnimate(view, animator);
-                if (animationManager != null)
-                    animationManager.closeAnimation(view, ExpandOrientation.FAB_LEFT);
             } else if (orientation == ExpandOrientation.FAB_RIGHT.getValue()) {
                 //向右折叠
                 ObjectAnimator animator = ObjectAnimator.ofFloat(view, "translationX", displacement, 0f);
                 viewAnimate(view, animator);
-                if (animationManager != null)
-                    animationManager.closeAnimation(view, ExpandOrientation.FAB_RIGHT);
             }
         }
     }
