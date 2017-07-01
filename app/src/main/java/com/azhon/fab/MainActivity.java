@@ -35,7 +35,7 @@ public class MainActivity extends AppCompatActivity implements OnFabClickListene
         FabAttributes collection = new FabAttributes.Builder()
                 .setBackgroundTint(Color.parseColor("#2096F3"))
                 .setSrc(getResources().getDrawable(R.drawable.like))
-                .setFabSize(FloatingActionButton.SIZE_NORMAL)
+                .setFabSize(FloatingActionButton.SIZE_MINI)
                 .setPressedTranslationZ(10)
                 .setTag(1)
                 .build();
@@ -43,7 +43,7 @@ public class MainActivity extends AppCompatActivity implements OnFabClickListene
         FabAttributes email = new FabAttributes.Builder()
                 .setBackgroundTint(Color.parseColor("#FF9800"))
                 .setSrc(getResources().getDrawable(R.drawable.mail))
-                .setFabSize(FloatingActionButton.SIZE_MINI)
+                .setFabSize(FloatingActionButton.SIZE_NORMAL)
                 .setPressedTranslationZ(10)
                 .setTag(2)
                 .build();
@@ -51,7 +51,7 @@ public class MainActivity extends AppCompatActivity implements OnFabClickListene
         FabAttributes news = new FabAttributes.Builder()
                 .setBackgroundTint(Color.parseColor("#03A9F4"))
                 .setSrc(getResources().getDrawable(R.drawable.news))
-                .setFabSize(FloatingActionButton.SIZE_MINI)
+                .setFabSize(FloatingActionButton.SIZE_NORMAL)
                 .setPressedTranslationZ(10)
                 .setTag(3)
                 .build();

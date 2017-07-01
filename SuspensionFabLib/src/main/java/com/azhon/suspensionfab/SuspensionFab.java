@@ -110,6 +110,7 @@ public class SuspensionFab extends RelativeLayout implements View.OnClickListene
                 .setTag(defaultTag)
                 .build();
         FloatingActionButton fab = new FloatingActionButton(context);
+        fab.setId(R.id.default_fab_id);
         fab.setOnClickListener(this);
         setAttributes(fab, build.getBuilder());
         addView(fab);
@@ -139,12 +140,17 @@ public class SuspensionFab extends RelativeLayout implements View.OnClickListene
     @Override
     public void addView(View child, int index) {
         RelativeLayout.LayoutParams lp = new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-        if (orientation == ExpandOrientation.FAB_TOP.getValue() ||
-                orientation == ExpandOrientation.FAB_BOTTOM.getValue()) {
+        if (orientation == ExpandOrientation.FAB_TOP.getValue()) {
             lp.addRule(RelativeLayout.CENTER_HORIZONTAL, RelativeLayout.TRUE);
-        } else if (orientation == ExpandOrientation.FAB_LEFT.getValue() ||
-                orientation == ExpandOrientation.FAB_RIGHT.getValue())
+        } else if (orientation == ExpandOrientation.FAB_BOTTOM.getValue()) {
+            lp.addRule(RelativeLayout.CENTER_HORIZONTAL, RelativeLayout.TRUE);
+            lp.addRule(RelativeLayout.ALIGN_BOTTOM, R.id.default_fab_id);
+        } else if (orientation == ExpandOrientation.FAB_LEFT.getValue()) {
             lp.addRule(RelativeLayout.CENTER_VERTICAL, TRUE);
+        } else if (orientation == ExpandOrientation.FAB_RIGHT.getValue()) {
+            lp.addRule(RelativeLayout.CENTER_VERTICAL, TRUE);
+            lp.addRule(RelativeLayout.ALIGN_RIGHT, R.id.default_fab_id);
+        }
         super.addView(child, index, lp);
     }
 
@@ -175,7 +181,6 @@ public class SuspensionFab extends RelativeLayout implements View.OnClickListene
             animationManager.defaultFabAnimation(getFabFromTag(defaultTag), ExpandOrientation.getEnum(orientation), currentState);
         }
         //按照添加的顺序一次展开按钮，去除默认的第一个按钮
-        int defaultHeight = getFabFromTag(defaultTag).getHeight();
         int displacement = 0;
         for (int i = getChildCount() - 1; i > 0; i--) {
             FloatingActionButton view = (FloatingActionButton) getChildAt(i - 1);
@@ -190,10 +195,6 @@ public class SuspensionFab extends RelativeLayout implements View.OnClickListene
                 if (animationManager != null)
                     animationManager.openAnimation(view, ExpandOrientation.FAB_TOP);
             } else if (orientation == ExpandOrientation.FAB_BOTTOM.getValue()) {
-                //因为view默认在左上角，所以高度会有个差距,当为最后一个的时候不加上大小差距
-                if (i != 1 && view.getHeight() < defaultHeight) {
-                    displacement += defaultHeight - view.getHeight();
-                }
                 //向下展开
                 ObjectAnimator animator = ObjectAnimator.ofFloat(view, "translationY", 0f, displacement);
                 viewAnimate(view, animator);
@@ -207,9 +208,6 @@ public class SuspensionFab extends RelativeLayout implements View.OnClickListene
                     animationManager.openAnimation(view, ExpandOrientation.FAB_LEFT);
             } else if (orientation == ExpandOrientation.FAB_RIGHT.getValue()) {
                 //向右展开
-                if (i != 1 && view.getHeight() < defaultHeight) {
-                    displacement += defaultHeight - view.getHeight();
-                }
                 ObjectAnimator animator = ObjectAnimator.ofFloat(view, "translationX", 0f, displacement);
                 viewAnimate(view, animator);
                 if (animationManager != null)
