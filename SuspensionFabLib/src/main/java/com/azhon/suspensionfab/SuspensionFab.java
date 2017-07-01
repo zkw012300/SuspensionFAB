@@ -175,13 +175,12 @@ public class SuspensionFab extends RelativeLayout implements View.OnClickListene
             animationManager.defaultFabAnimation(getFabFromTag(defaultTag), ExpandOrientation.getEnum(orientation), currentState);
         }
         //按照添加的顺序一次展开按钮，去除默认的第一个按钮
-        int j = 0;
+        int defaultHeight = getFabFromTag(defaultTag).getHeight();
+        int displacement = 0;
         for (int i = getChildCount() - 1; i > 0; i--) {
-            j++;
             FloatingActionButton view = (FloatingActionButton) getChildAt(i - 1);
-            int defaultHeight = getFabFromTag(defaultTag).getHeight();
             //fab位移的距离
-            int displacement = view.getHeight() * j + fabSpacing * j;
+            displacement += view.getHeight() + fabSpacing;
             setVisible(view, true);
             //位移的高度要加上按钮之间的间距
             if (orientation == ExpandOrientation.FAB_TOP.getValue()) {
@@ -191,8 +190,8 @@ public class SuspensionFab extends RelativeLayout implements View.OnClickListene
                 if (animationManager != null)
                     animationManager.openAnimation(view, ExpandOrientation.FAB_TOP);
             } else if (orientation == ExpandOrientation.FAB_BOTTOM.getValue()) {
-                //因为view默认在左上角，所以高度会有个差距
-                if (view.getHeight() < defaultHeight) {
+                //因为view默认在左上角，所以高度会有个差距,当为最后一个的时候不加上大小差距
+                if (i != 1 && view.getHeight() < defaultHeight) {
                     displacement += defaultHeight - view.getHeight();
                 }
                 //向下展开
@@ -207,10 +206,10 @@ public class SuspensionFab extends RelativeLayout implements View.OnClickListene
                 if (animationManager != null)
                     animationManager.openAnimation(view, ExpandOrientation.FAB_LEFT);
             } else if (orientation == ExpandOrientation.FAB_RIGHT.getValue()) {
-                if (view.getHeight() < defaultHeight) {
+                //向右展开
+                if (i != 1 && view.getHeight() < defaultHeight) {
                     displacement += defaultHeight - view.getHeight();
                 }
-                //向右展开
                 ObjectAnimator animator = ObjectAnimator.ofFloat(view, "translationX", 0f, displacement);
                 viewAnimate(view, animator);
                 if (animationManager != null)

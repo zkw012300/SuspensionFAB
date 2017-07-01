@@ -35,7 +35,7 @@ public class MainActivity extends AppCompatActivity implements OnFabClickListene
         FabAttributes collection = new FabAttributes.Builder()
                 .setBackgroundTint(Color.parseColor("#2096F3"))
                 .setSrc(getResources().getDrawable(R.drawable.like))
-                .setFabSize(FloatingActionButton.SIZE_MINI)
+                .setFabSize(FloatingActionButton.SIZE_NORMAL)
                 .setPressedTranslationZ(10)
                 .setTag(1)
                 .build();
