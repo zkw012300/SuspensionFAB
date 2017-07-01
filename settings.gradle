@@ -1,1 +1,1 @@
-include ':app', ':SuspensionFabLib'
+include ':app', ':suspension-fab'
