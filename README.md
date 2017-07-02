@@ -65,3 +65,17 @@ fabTop.setFabClickListener(this);
 > 继承（extends）AnimationManager 并实现里面的方法实现自己想要的动画 （可以查看Demo里的使用案例）
 `fabTop.setAnimationManager(new FabAlphaAnimate(fabTop));`//设置自定义的动画
 ### 如果觉得不错就留下你的star吧......
+### LICENSE
+   Copyright [2016-09-21] [阿钟]
+
+   Licensed under the Apache License, Version 2.0 (the "License");
+   you may not use this file except in compliance with the License.
+   You may obtain a copy of the License at
+
+     http://www.apache.org/licenses/LICENSE-2.0
+
+   Unless required by applicable law or agreed to in writing, software
+   distributed under the License is distributed on an "AS IS" BASIS,
+   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+   See the License for the specific language governing permissions and
+   limitations under the License.
