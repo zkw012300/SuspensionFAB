@@ -15,10 +15,10 @@ a_zhon:fab_orientation| 菜单的展开方向 | top bottom left right
 <dependency>
   <groupId>com.azhon</groupId>
   <artifactId>suspension-fab</artifactId>
-  <version>1.0.0</version>
+  <version>1.1.0</version>
 </dependency>
 
-compile 'com.azhon:suspension-fab:1.0.0'
+compile 'com.azhon:suspension-fab:1.1.0'
 ```
 ### 五：布局使用
 ```
