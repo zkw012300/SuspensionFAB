@@ -64,7 +64,7 @@ fabTop.setFabClickListener(this);
 ### 七：提供自定义每个按钮的动画（AnimationManager）
 > 继承（extends）AnimationManager 并实现里面的方法实现自己想要的动画 （可以查看Demo里的使用案例）
 `fabTop.setAnimationManager(new FabAlphaAnimate(fabTop));`//设置自定义的动画
-### 如果觉得不错就留下你的star吧......
+### 如果觉得不错就留下你的star吧 [博文地址](http://blog.csdn.net/a_zhon/article/details/74086025)......
 ### LICENSE
    Copyright [2016-09-21] [阿钟]
 
