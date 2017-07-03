@@ -1,3 +1,4 @@
+[ ![Download](https://api.bintray.com/packages/azhon/azhon/suspension-fab/images/download.svg?version=1.1.0) ](https://bintray.com/azhon/azhon/suspension-fab/1.1.0/link)
 ### 一： 一个可以展示多个悬浮按钮的菜单
 
 ### 二：效果图
