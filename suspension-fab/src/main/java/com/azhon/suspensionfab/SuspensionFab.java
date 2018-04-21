@@ -212,7 +212,7 @@ public class SuspensionFab extends RelativeLayout implements View.OnClickListene
     /**
      * 按钮的关闭
      */
-    private void closeAnimate() {
+    public void closeAnimate() {
         currentState = false;
         if (animationManager != null) {
             animationManager.defaultFabAnimation(getFabFromTag(defaultTag), ExpandOrientation.getEnum(orientation), currentState);
