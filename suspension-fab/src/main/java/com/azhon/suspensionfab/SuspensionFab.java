@@ -167,6 +167,7 @@ public class SuspensionFab extends RelativeLayout implements View.OnClickListene
         } else {
             if (fabClickListener != null) {
                 fabClickListener.onFabClick((FloatingActionButton) v, v.getTag());
+                closeAnimate();
             }
         }
     }
@@ -212,7 +213,7 @@ public class SuspensionFab extends RelativeLayout implements View.OnClickListene
     /**
      * 按钮的关闭
      */
-    public void closeAnimate() {
+    private void closeAnimate() {
         currentState = false;
         if (animationManager != null) {
             animationManager.defaultFabAnimation(getFabFromTag(defaultTag), ExpandOrientation.getEnum(orientation), currentState);
